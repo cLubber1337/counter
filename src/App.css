@@ -16,16 +16,24 @@
   display: flex;
   border: 5px solid #092e75;
   justify-content: center;
-  color: #092e75;
-  transition-duration: 0.4s;
+  /*transition-duration: 0.4s;*/
+  height: 249px;
 }
-.board h1 {
+.boardValue {
+  color: #092e75;
   font-size: 100px;
   font-family: Geneva, Arial, Helvetica, sans-serif
 }
-.board-max {
+.boardMax {
+  font-size: 100px;
   color: red;
-  background-color: royalblue;
+  background-color: cornflowerblue;
+}
+
+.boardError {
+  font-size: 30px;
+  color: red;
+  font-family: Geneva, Arial, Helvetica, sans-serif
 }
 
 

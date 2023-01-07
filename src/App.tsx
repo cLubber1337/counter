@@ -24,12 +24,26 @@ function App() {
     }
 
     // Styles
+    let value = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
+        || startNumber > maxNumber
+        ? "Incorrect Value" : currNumber
+
     const classNameForButtonInc = "button"
     const classNameForButtonReset = "button"
-    const classNameForBoard = currNumber === maxNumber ? `board board-max` : "board"
-    const disabledForInc = currNumber === maxNumber
-    const disabledForReset = startNumber === currNumber
-    const disabledForSetValue = false
+    const classNameForBoard = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber
+    || maxNumber === startNumber
+        ? "board boardMax" : "board"
+    const classNameForBoardNumber = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
+    || startNumber > maxNumber ? "boardError" :
+        currNumber === maxNumber? "boardMax" : "boardValue"
+
+
+
+    const disabledForInc = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber ||
+        startNumber=== maxNumber
+    const disabledForReset = startNumber === currNumber || 0 > maxNumber || 0 > startNumber
+        || maxNumber === startNumber
+    const disabledForSetValue = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
 
 
 
@@ -54,13 +68,14 @@ function App() {
                 <Counter
 
                     countNumbers={countNumbers}
-                    number={currNumber}
+                    number={value}
                     resetCountNumbers={resetCountNumbers}
                     classNameForButtonInc={classNameForButtonInc}
                     classNameForButtonReset={classNameForButtonReset}
                     classNameForBoard={classNameForBoard}
                     disabledForInc={disabledForInc}
                     disabledForReset={disabledForReset}
+                    classNameForBoardNumber={classNameForBoardNumber}
 
                 />
             </div>

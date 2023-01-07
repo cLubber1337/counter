@@ -5,13 +5,13 @@ import {SuperButton} from "../main/SuperButton";
 
 type PropsType = {
     classNameForButtonInc: string
-    setStartNumber: (startNumber: number)=>void
-    setMaxNumber: (maxNumber: number)=>void
+    setStartNumber: (startNumber: number) => void
+    setMaxNumber: (maxNumber: number) => void
     startNumber: number
     maxNumber: number
     setValue: (start: number, max: number) => void
     currNumber: number
-    setCurrNumber:(currNumber: number)=>void
+    setCurrNumber: (currNumber: number) => void
     disabledForSetValue: boolean
 
 }
@@ -21,22 +21,23 @@ const Settings = (props: PropsType) => {
     const [startNum, setStartNum] = useState(0)
     const [maxNum, setMaxNum] = useState(0)
 
-    useEffect(()=>{
+    useEffect(() => {
         let valueMax = localStorage.getItem("maxValue")
-        if(valueMax) {
+        if (valueMax) {
             let newValue = JSON.parse(valueMax)
             setMaxNum(newValue)
             props.setMaxNumber(newValue)
         }
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem("maxValue", JSON.stringify(maxNum))
+        props.setMaxNumber(maxNum)
     }, [maxNum])
 
-    useEffect(()=>{
+    useEffect(() => {
         let valueStart = localStorage.getItem("startValue")
-        if(valueStart) {
+        if (valueStart) {
             let newValue = JSON.parse(valueStart)
             setStartNum(newValue)
             props.setCurrNumber(newValue)
@@ -44,9 +45,16 @@ const Settings = (props: PropsType) => {
     }, [])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         localStorage.setItem("startValue", JSON.stringify(startNum))
+        props.setStartNumber(startNum)
     }, [startNum])
+
+    const classNameForInputMax = maxNum < 0 || maxNum === startNum
+    || maxNum < startNum ? s.inputError : s.input
+
+    const classNameForInputStart = startNum < 0 || maxNum === startNum
+    || maxNum < startNum ? s.inputError : s.input
 
 
     return (
@@ -56,9 +64,11 @@ const Settings = (props: PropsType) => {
 
                 <div className={s.value}>
                     <span>Max value: </span>
-                    <input className={s.input}
+                    <input className={classNameForInputMax}
                            type={"number"}
-                           onChange={e => {setMaxNum(JSON.parse(e.currentTarget.value))}}
+                           onChange={e => {
+                               setMaxNum(JSON.parse(e.currentTarget.value))
+                           }}
                            value={maxNum}
                     />
                 </div>
@@ -66,9 +76,11 @@ const Settings = (props: PropsType) => {
                 <div className={s.value}>
                     <span>Start value: </span>
                     <input
-                        className={s.input}
+                        className={classNameForInputStart}
                         type={"number"}
-                        onChange={e => {setStartNum(JSON.parse(e.currentTarget.value))}}
+                        onChange={e => {
+                            setStartNum(JSON.parse(e.currentTarget.value))
+                        }}
                         value={startNum}
                     />
                 </div>
@@ -79,7 +91,7 @@ const Settings = (props: PropsType) => {
                 <SuperButton
                     name={"set"}
                     className={props.classNameForButtonInc}
-                    callBack={() => props.setValue(startNum, maxNum )}
+                    callBack={() => props.setValue(startNum, maxNum)}
                     disabled={props.disabledForSetValue}
 
                 />

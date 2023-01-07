@@ -4,13 +4,14 @@ import {ControlPanel} from "./ControlPanel";
 
 type PropsType = {
     countNumbers: () => void
-    number: number
+    number: number | string
     resetCountNumbers: () => void
     disabledForInc:boolean
     disabledForReset: boolean
     classNameForBoard: string
     classNameForButtonInc: string
     classNameForButtonReset: string
+    classNameForBoardNumber: string
 }
 
 
@@ -20,6 +21,7 @@ export const Counter = (props: PropsType) => {
             <BoardCounter
                 number={props.number}
                 className={props.classNameForBoard}
+                classNameForBoardNumber={props.classNameForBoardNumber}
 
             />
 
