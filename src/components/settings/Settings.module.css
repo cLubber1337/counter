@@ -1,0 +1,11 @@
+import React from 'react';
+
+const Settings = () => {
+    return (
+        <div>
+            <>asdasdasda</>
+        </div>
+    );
+};
+
+export default Settings;
