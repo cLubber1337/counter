@@ -9,48 +9,56 @@
 .counter {
   display: flex;
   border: 10px solid #092e75;
-
 }
 .board {
   align-items: center;
   display: flex;
   border: 5px solid #092e75;
   justify-content: center;
-  background-color: cornflowerblue;
   height: 249px;
 }
 .boardValue {
   font-weight: bold;
   color: #092e75;
   font-size: 100px;
-  font-family: Geneva, Arial, Helvetica, sans-serif
+  font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 .boardMax {
+  border-right: none;
+  border-left: none;
+  width: 100%;
+  background-color: cornflowerblue;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: space-between;
+  justify-content: space-around;
+  display: flex;
   font-weight: bold;
   font-size: 100px;
   color: red;
   text-align: center;
-  background-color: cornflowerblue;
   font-family: Geneva, Arial, Helvetica, sans-serif
 }
 
 .boardError {
-  font-size: 25px;
+  background-color: white;
+  font-size: 40px;
+  font-weight: bold;
   color: red;
   font-family: Geneva, Arial, Helvetica, sans-serif;
-
 }
 
 .boardSetValue {
-  font-size: 25px;
+  font-size: 24px;
   color: #092e75;
-  font-family: Geneva, Arial, Helvetica, sans-serif
+  font-family: Geneva, Arial, Helvetica, sans-serif;
 }
 
 
 .buttons-div {
   display: flex;
-  border: 5px solid #092e75
+  border: 5px solid #092e75;
 }
 
 .button {

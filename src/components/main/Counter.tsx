@@ -22,9 +22,7 @@ export const Counter = (props: PropsType) => {
                 number={props.number}
                 className={props.classNameForBoard}
                 classNameForBoardNumber={props.classNameForBoardNumber}
-
             />
-
             <ControlPanel
                 countNumbers={props.countNumbers}
                 resetCountNumbers={props.resetCountNumbers}
@@ -32,7 +30,6 @@ export const Counter = (props: PropsType) => {
                 classNameForButtonReset={props.classNameForButtonReset}
                 disabledForInc={props.disabledForInc}
                 disabledForReset={props.disabledForReset}
-
             />
         </div>
     );
