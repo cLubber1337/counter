@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {Counter} from "./components/main/Counter";
 import Settings from "./components/settings/Settings";
@@ -8,53 +8,79 @@ function App() {
     const [startNumber, setStartNumber] = useState<number>(0)
     const [maxNumber, setMaxNumber] = useState<number>(0)
     const [currNumber, setCurrNumber] = useState<number>(0)
+    //-----------
+    const [isChanged, setIsChanged] = useState<boolean>(false)
+    const [startEnteredNumber, setStartEnteredNumber] = useState<number>(0)
+    const [maxEnteredNumber, setMaxEnteredNumber] = useState<number>(0)
+
+    let value = 0 > maxEnteredNumber || 0 > startEnteredNumber || maxEnteredNumber === startEnteredNumber
+    || startEnteredNumber > maxEnteredNumber
+        ? "Incorrect Value" : isChanged  ? "enter values and press set" : currNumber
+
+    useEffect(() => {
+        if ((startEnteredNumber !== startNumber) || (maxEnteredNumber !== maxNumber)) {
+            setIsChanged(true)
+        } else {
+            setIsChanged(false)
+        }
+    }, [startEnteredNumber, maxEnteredNumber, startNumber, maxNumber])
+
+
+
+
+
     // Buttons
-   const setValue = (start: number, max: number) => {
-       setStartNumber(start)
-       setMaxNumber(max)
-       setCurrNumber(start)
-   }
+
+    const setValue = (start: number, max: number) => {
+        setStartNumber(start)
+        setMaxNumber(max)
+        setCurrNumber(start)
+    }
 
     const countNumbers = () => {
         if (currNumber < maxNumber)
             setCurrNumber(currNumber + 1)
     }
+
     const resetCountNumbers = () => {
         setCurrNumber(startNumber)
     }
 
-    // Styles-------------------------------- "enter values and press set"
+    // Styles--------------------------------
 
-    let value = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
-        || startNumber > maxNumber
-        ? "Incorrect Value" : currNumber
+
 
     const classNameForButtonInc = "button"
     const classNameForButtonReset = "button"
-    const classNameForBoard = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber
-    || maxNumber === startNumber || startNumber > maxNumber
-        ? "board boardMax" : "board"
-    const classNameForBoardNumber = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
-    || startNumber > maxNumber ? "boardError" :
-        currNumber === maxNumber? "boardMax" : "boardValue"
 
+    const classNameForBoard = startEnteredNumber === maxEnteredNumber || 0 > maxEnteredNumber || 0 > startEnteredNumber
+    || maxEnteredNumber === startEnteredNumber || startEnteredNumber > maxEnteredNumber|| isChanged
+        ? "board boardMax" : "board"
+
+    const classNameForBoardNumber = 0 > maxEnteredNumber || 0 > startEnteredNumber || maxEnteredNumber === startEnteredNumber
+    ||  startEnteredNumber > maxEnteredNumber ? "boardError" : isChanged ? "boardSetValue" :
+        currNumber === maxEnteredNumber ? "boardMax" : isChanged ? "boardSetValue" : "boardValue"
 // disables-------------------------------
 
-    const disabledForInc = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber ||
-        startNumber=== maxNumber || startNumber > maxNumber
+    const disabledForInc = currNumber === maxEnteredNumber || 0 > maxEnteredNumber || 0 > startEnteredNumber ||
+        startEnteredNumber === maxEnteredNumber || startEnteredNumber > maxEnteredNumber || isChanged
 
-    const disabledForReset = startNumber === currNumber || 0 > maxNumber || 0 > startNumber
-        || maxNumber === startNumber || startNumber > maxNumber
+    const disabledForReset = startEnteredNumber === currNumber || 0 > maxEnteredNumber || 0 > startEnteredNumber
+        || maxEnteredNumber === startEnteredNumber || startEnteredNumber > maxEnteredNumber || isChanged
 
-    const disabledForSetValue = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
-    || startNumber > maxNumber
-
+    const disabledForSetValue = 0 > maxEnteredNumber || 0 > startEnteredNumber || maxEnteredNumber === startEnteredNumber
+        || startEnteredNumber > maxEnteredNumber || !isChanged
 
 
     return (
         <div className="App">
             <div>
-                <Settings classNameForButtonInc={classNameForButtonInc}
+                <Settings startEnteredNumber={startEnteredNumber}
+                          setStartEnteredNumber={setStartEnteredNumber}
+                          maxEnteredNumber={maxEnteredNumber}
+                          setMaxEnteredNumber={setMaxEnteredNumber}
+
+                          classNameForButtonInc={classNameForButtonInc}
                           setStartNumber={setStartNumber}
                           setMaxNumber={setMaxNumber}
                           setValue={setValue}
