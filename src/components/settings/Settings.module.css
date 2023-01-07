@@ -30,12 +30,14 @@
 }
 
 .input {
+    width: 100px;
     border: 5px solid #092e75;
     text-align: center;
     font-weight: bold;
 }
 
 .inputError {
+    width: 100px;
     border: 5px solid darkred;
     text-align: center;
     font-weight: bold;

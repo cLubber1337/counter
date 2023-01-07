@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Counter} from "./components/main/Counter";
 import Settings from "./components/settings/Settings";
@@ -23,7 +23,8 @@ function App() {
         setCurrNumber(startNumber)
     }
 
-    // Styles
+    // Styles-------------------------------- "enter values and press set"
+
     let value = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
         || startNumber > maxNumber
         ? "Incorrect Value" : currNumber
@@ -31,19 +32,22 @@ function App() {
     const classNameForButtonInc = "button"
     const classNameForButtonReset = "button"
     const classNameForBoard = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber
-    || maxNumber === startNumber
+    || maxNumber === startNumber || startNumber > maxNumber
         ? "board boardMax" : "board"
     const classNameForBoardNumber = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
     || startNumber > maxNumber ? "boardError" :
         currNumber === maxNumber? "boardMax" : "boardValue"
 
-
+// disables-------------------------------
 
     const disabledForInc = currNumber === maxNumber || 0 > maxNumber || 0 > startNumber ||
-        startNumber=== maxNumber
+        startNumber=== maxNumber || startNumber > maxNumber
+
     const disabledForReset = startNumber === currNumber || 0 > maxNumber || 0 > startNumber
-        || maxNumber === startNumber
+        || maxNumber === startNumber || startNumber > maxNumber
+
     const disabledForSetValue = 0 > maxNumber || 0 > startNumber || maxNumber === startNumber
+    || startNumber > maxNumber
 
 
 
@@ -53,10 +57,7 @@ function App() {
                 <Settings classNameForButtonInc={classNameForButtonInc}
                           setStartNumber={setStartNumber}
                           setMaxNumber={setMaxNumber}
-                          startNumber={startNumber}
-                          maxNumber={maxNumber}
                           setValue={setValue}
-                          currNumber={currNumber}
                           setCurrNumber={setCurrNumber}
                           disabledForSetValue={disabledForSetValue}
 

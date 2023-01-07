@@ -7,10 +7,7 @@ type PropsType = {
     classNameForButtonInc: string
     setStartNumber: (startNumber: number) => void
     setMaxNumber: (maxNumber: number) => void
-    startNumber: number
-    maxNumber: number
     setValue: (start: number, max: number) => void
-    currNumber: number
     setCurrNumber: (currNumber: number) => void
     disabledForSetValue: boolean
 
@@ -20,6 +17,9 @@ const Settings = (props: PropsType) => {
 
     const [startNum, setStartNum] = useState(0)
     const [maxNum, setMaxNum] = useState(0)
+
+
+
 
     useEffect(() => {
         let valueMax = localStorage.getItem("maxValue")
@@ -33,6 +33,7 @@ const Settings = (props: PropsType) => {
     useEffect(() => {
         localStorage.setItem("maxValue", JSON.stringify(maxNum))
         props.setMaxNumber(maxNum)
+
     }, [maxNum])
 
     useEffect(() => {
@@ -43,7 +44,6 @@ const Settings = (props: PropsType) => {
             props.setCurrNumber(newValue)
         }
     }, [])
-
 
     useEffect(() => {
         localStorage.setItem("startValue", JSON.stringify(startNum))

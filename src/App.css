@@ -20,14 +20,17 @@
   height: 249px;
 }
 .boardValue {
+  font-weight: bold;
   color: #092e75;
   font-size: 100px;
   font-family: Geneva, Arial, Helvetica, sans-serif
 }
 .boardMax {
+  font-weight: bold;
   font-size: 100px;
   color: red;
   background-color: cornflowerblue;
+  font-family: Geneva, Arial, Helvetica, sans-serif
 }
 
 .boardError {
