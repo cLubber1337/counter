@@ -1,11 +1,43 @@
-import React from 'react';
+.setting {
+    display: flex;
+    border: 10px solid #092e75;
+    flex-direction: column;
+    width: 371px;
+    height: 397px;
 
-const Settings = () => {
-    return (
-        <div>
-            <>asdasdasda</>
-        </div>
-    );
-};
+    justify-content: flex-end;
 
-export default Settings;
+
+}
+.settingPanel {
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    border: 5px solid #092e75;
+    justify-content: center;
+    color: #092e75;
+    transition-duration: 0.4s;
+}
+
+.value {
+    padding: 20px;
+}
+
+
+.value span {
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.input {
+    border: 5px solid #092e75;
+    text-align: center;
+    font-weight: bold;
+}
+
+.buttonDiv {
+    display: flex;
+    border: 5px solid #092e75;
+    justify-content: center;
+}

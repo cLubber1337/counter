@@ -1,9 +1,14 @@
 import React from 'react';
 
-export const BoardCounter = () => {
+type PropsType = {
+    number:number
+    className: string
+}
+
+export const BoardCounter = (props:PropsType) => {
     return (
-        <div>
-            
+        <div className={props.className} >
+            <h1>{props.number}</h1>
         </div>
     );
 };
